@@ -1,0 +1,13 @@
+{
+    "clases": [
+        "arroz_enfermo",
+        "arroz_sano",
+        "frijol_enfermo",
+        "frijol_sano",
+        "maiz_enfermo",
+        "maiz_plaga",
+        "maiz_sano"
+    ],
+    "tamano_imagen": 224,
+    "num_clases": 7
+}

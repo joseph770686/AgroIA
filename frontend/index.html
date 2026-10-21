@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroVision AI | Panel de Control</title>
+
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                🌱
+            </div>
+
+            <div>
+                <strong>AgroVision AI</strong>
+                <span>Inteligencia agrícola</span>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>▦</span>
+                dashboard
+            </button>
+
+            <button class="nav-item" data-section="analisis">
+                <span>↥</span>
+                Cargar Análisis
+            </button>
+
+            <button class="nav-item" data-section="historial">
+                <span>◷</span>
+                Resultados Históricos
+            </button>
+            
+<button
+    class="nav-item"
+    data-section="admin"
+    data-admin-only
+    style="display: none;"
+>
+    <span>⚙</span>
+    Administración
+</button>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item">
+                <span>⚙</span>
+                Configuración
+            </button>
+
+            
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="breadcrumbs">
+                <span>Inicio</span>
+                <b>›</b>
+                <strong id="breadcrumb">Panel de Control</strong>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="search">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        placeholder="Buscar análisis o cultivos..."
+                    >
+                </div>
+
+                
+
+                
+<div class="profile">
+    <div class="avatar" id="profileAvatar">U</div>
+
+    <div>
+        <strong id="profileName">Usuario</strong>
+        <small id="profileRole">USUARIO</small>
+    </div>
+</div>
+
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+        <div class="content">
+
+
+            <!-- ================================================= -->
+            <!-- DASHBOARD -->
+            <!-- ================================================= -->
+
+            <section id="dashboard" class="section active-section">
+
+                <!-- HERO -->
+
+                <div class="hero">
+
+                    <div class="hero-overlay"></div>
+
+                    <div class="hero-content">
+
+                        <span class="eyebrow">
+                            ● Impulsado por AgroVision AI
+                        </span>
+
+                        <h1>
+                            Optimiza tus Cultivos<br>
+                            con Precisión
+                        </h1>
+
+                        <p>
+                            Utiliza visión artificial para analizar fotografías
+                            de tus cultivos y detectar su estado de forma rápida.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <button
+                                class="btn btn-primary"
+                                id="heroAnalyzeBtn"
+                            >
+                                Iniciar Nuevo Análisis
+                            </button>
+
+                            <button class="btn btn-outline">
+                                Ver Guía de Uso
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div>
+                            <span class="stat-label">
+                                ANÁLISIS REALIZADOS
+                            </span>
+
+                            <h2 id="totalAnalyses">
+                                0
+                            </h2>
+
+                            <small>
+                                Tu historial aparecerá aquí
+                            </small>
+                        </div>
+
+                        <div class="stat-icon green">
+                            ↗
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div>
+                            <span class="stat-label">
+                                CULTIVOS ANALIZADOS
+                            </span>
+
+                            <h2 id="cropCount">
+                                0
+                            </h2>
+
+                            <small>
+                                Maíz · Frijol · Arroz
+                            </small>
+                        </div>
+
+                        <div class="stat-icon mint">
+                            🌱
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div>
+                            <span class="stat-label">
+                                ALERTAS
+                            </span>
+
+                            <h2 id="alertCount">
+                                0
+                            </h2>
+
+                            <small>
+                                Resultados afectados
+                            </small>
+                        </div>
+
+                        <div class="stat-icon yellow">
+                            !
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div>
+                            <span class="stat-label">
+                                ESTADO DEL SISTEMA
+                            </span>
+
+                            <h2 class="system-online">
+                                ● Activo
+                            </h2>
+
+                            <small>
+                                Modelo IA disponible
+                            </small>
+                        </div>
+
+                        <div class="stat-icon blue">
+                            ✓
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+                    <!-- HEALTH CARD -->
+
+                    <div class="panel health-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h2>Tendencia de Salud del Cultivo</h2>
+
+                                <p>
+                                    Resumen de tus análisis recientes
+                                </p>
+                            </div>
+
+                            <span class="panel-badge">
+                                IA
+                            </span>
+
+                        </div>
+
+
+                        <div class="empty-chart">
+
+                            <div class="chart-icon">
+                                📊
+                            </div>
+
+                            <h3>
+                                Aún no hay suficientes análisis
+                            </h3>
+
+                            <p>
+                                Realiza algunos análisis para visualizar
+                                aquí las tendencias de tus cultivos.
+                            </p>
+
+                            <button
+                                class="text-button"
+                                id="chartAnalyzeBtn"
+                            >
+                                Realizar análisis →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RECENT -->
+
+                    <div class="panel recent-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h2>Análisis Recientes</h2>
+
+                                <p>
+                                    Últimos diagnósticos realizados
+                                </p>
+                            </div>
+
+                            <button
+                                class="view-all"
+                                data-section="historial"
+                            >
+                                Ver todo
+                            </button>
+
+                        </div>
+
+
+                        <div id="recentAnalyses" class="recent-list">
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+                                    📷
+                                </div>
+
+                                <strong>
+                                    Sin análisis todavía
+                                </strong>
+
+                                <p>
+                                    Tus resultados aparecerán aquí.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOWER GRID -->
+
+                <div class="lower-grid">
+
+                    <div class="panel crop-summary">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h2>Resumen por Cultivo</h2>
+
+                                <p>
+                                    Cultivos compatibles con el modelo
+                                </p>
+                            </div>
+
+                            <span class="small-leaf">
+                                🌱
+                            </span>
+
+                        </div>
+
+
+                        <div class="crop-bars">
+
+                            <div class="crop-row">
+
+                                <div>
+                                    <span>Maíz</span>
+                                    <strong>3 categorías</strong>
+                                </div>
+
+                                <div class="bar">
+                                    <span style="width: 75%"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="crop-row">
+
+                                <div>
+                                    <span>Frijol</span>
+                                    <strong>2 categorías</strong>
+                                </div>
+
+                                <div class="bar">
+                                    <span style="width: 55%"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="crop-row">
+
+                                <div>
+                                    <span>Arroz</span>
+                                    <strong>2 categorías</strong>
+                                </div>
+
+                                <div class="bar">
+                                    <span style="width: 55%"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel advice-panel">
+
+                        <div class="advice-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Consejo AgroVision
+                            </h2>
+
+                            <p>
+                                Para obtener mejores resultados, utiliza
+                                fotografías claras donde las hojas o partes
+                                afectadas del cultivo sean visibles.
+                            </p>
+
+                            <button
+                                class="text-button"
+                                id="adviceAnalyzeBtn"
+                            >
+                                Analizar una imagen →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+            <!-- ================================================= -->
+            <!-- ANALISIS -->
+            <!-- ================================================= -->
+
+            <section id="analisis" class="section">
+
+                <div class="page-title">
+
+                    <div>
+                        <span class="eyebrow-dark">
+                            ANÁLISIS DE CULTIVOS
+                        </span>
+
+                        <h1>
+                            Detecta el estado de tu cultivo
+                        </h1>
+
+                        <p>
+                            Sube una fotografía y deja que nuestro modelo
+                            de inteligencia artificial la analice.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-layout">
+
+                    <!-- UPLOAD -->
+
+                    <div class="panel upload-panel">
+
+                        <div class="upload-header">
+
+                            <div class="upload-icon">
+                                📷
+                            </div>
+
+                            <div>
+                                <h2>
+                                    Selecciona una imagen
+                                </h2>
+
+                                <p>
+                                    JPG, JPEG, PNG o WEBP
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="imageInput"
+                            accept="image/jpeg,image/png,image/webp"
+                            hidden
+                        >
+
+
+                        <button
+                            class="select-button"
+                            id="selectImageBtn"
+                        >
+                            Seleccionar imagen
+                        </button>
+
+
+                        <div
+                            id="fileName"
+                            class="file-name"
+                        >
+                            Ningún archivo seleccionado
+                        </div>
+
+
+                        <div class="preview-container">
+
+                            <div
+                                id="previewEmpty"
+                                class="preview-empty"
+                            >
+
+                                <span>🖼️</span>
+
+                                <strong>
+                                    Vista previa
+                                </strong>
+
+                                <small>
+                                    La imagen aparecerá aquí
+                                </small>
+
+                            </div>
+
+
+                            <img
+                                id="previewImage"
+                                class="preview-image"
+                                alt="Vista previa"
+                            >
+
+                        </div>
+
+
+                        <button
+                            id="analyzeBtn"
+                            class="analyze-button"
+                            disabled
+                        >
+                            Analizar cultivo
+                        </button>
+
+
+                        <div
+                            id="loading"
+                            class="loading"
+                        >
+                            <div class="spinner"></div>
+
+                            <span>
+                                La IA está analizando la imagen...
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div
+                        id="resultCard"
+                        class="panel result-panel"
+                    >
+
+                        <div class="result-header">
+
+                            <div>
+                                <span class="eyebrow-dark">
+                                    RESULTADO DEL ANÁLISIS
+                                </span>
+
+                                <h2>
+                                    Diagnóstico IA
+                                </h2>
+                            </div>
+
+                            <div class="result-check">
+                                ✓
+                            </div>
+
+                        </div>
+
+
+                        <div class="result-main">
+
+                            <div class="result-item">
+
+                                <span>
+                                    CULTIVO
+                                </span>
+
+                                <strong id="resultCrop">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="result-item">
+
+                                <span>
+                                    ESTADO
+                                </span>
+
+                                <strong id="resultState">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="result-item">
+
+                                <span>
+                                    TIPO
+                                </span>
+
+                                <strong id="resultType">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="confidence-box">
+
+                                <div>
+
+                                    <span>
+                                        CONFIANZA DEL MODELO
+                                    </span>
+
+                                    <strong id="resultConfidence">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+                                <div class="confidence-bar">
+                                    <span id="confidenceBar"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="probabilities">
+
+                            <h3>
+                                Probabilidades
+                            </h3>
+
+                            <div id="probabilityList">
+                                <p>
+                                    Las probabilidades aparecerán después
+                                    del análisis.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- HISTORIAL -->
+            <!-- ================================================= -->
+
+            <section id="historial" class="section">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <span class="eyebrow-dark">
+                            HISTORIAL
+                        </span>
+
+                        <h1>
+                            Resultados Históricos
+                        </h1>
+
+                        <p>
+                            Aquí podrás consultar todos tus análisis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel history-empty">
+
+                    <div class="history-icon">
+                        ◷
+                    </div>
+
+                    <h2>
+                        Todavía no tienes historial
+                    </h2>
+
+                    <p>
+                        Los análisis que realices aparecerán aquí cuando
+                        conectemos el sistema con la base de datos.
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        id="historyAnalyzeBtn"
+                    >
+                        Realizar análisis
+                    </button>
+
+                </div>
+
+            </section>
+
+<!-- ================================================= -->
+<!-- ADMINISTRACIÓN -->
+<!-- ================================================= -->
+
+<section id="admin" class="section" data-admin-only style="display: none;">
+
+    <div class="page-title">
+        <div>
+            <span class="eyebrow-dark">ADMINISTRACIÓN</span>
+            <h1>Panel de administrador</h1>
+            <p>Supervisa los usuarios y la actividad de AgroVision AI.</p>
+        </div>
+    </div>
+
+    <!-- ESTADÍSTICAS GENERALES -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div>
+                <span class="stat-label">USUARIOS REGISTRADOS</span>
+                <h2 id="adminTotalUsuarios">0</h2>
+                <small>Total de cuentas</small>
+            </div>
+            <div class="stat-icon green">♙</div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <span class="stat-label">ANÁLISIS REALIZADOS</span>
+                <h2 id="adminTotalAnalisis">0</h2>
+                <small>Actividad global</small>
+            </div>
+            <div class="stat-icon mint">↗</div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <span class="stat-label">CULTIVOS ANALIZADOS</span>
+                <h2 id="adminCultivosAnalizados">0</h2>
+                <small>Cultivos registrados</small>
+            </div>
+            <div class="stat-icon yellow">🌱</div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <span class="stat-label">ALERTAS REGISTRADAS</span>
+                <h2 id="adminTotalAlertas">0</h2>
+                <small>Resultados afectados</small>
+            </div>
+            <div class="stat-icon blue">!</div>
+        </div>
+
+    </div>
+
+    <!-- TABLA DE USUARIOS -->
+
+    <div class="panel admin-users-panel">
+
+        <div class="panel-header">
+            <div>
+                <h2>Usuarios registrados</h2>
+                <p>Cuentas registradas en la plataforma.</p>
+            </div>
+
+            <button
+                class="btn btn-primary"
+                id="adminRefreshBtn"
+                type="button"
+            >
+                Actualizar datos
+            </button>
+        </div>
+
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+
+                <tbody id="adminUsuarios">
+                    <tr>
+                        <td colspan="4">Cargando usuarios...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <div>
+                <strong>🌱 AgroVision AI</strong>
+                <span>© 2026</span>
+            </div>
+
+            <div class="footer-links">
+                <span>Centro de Ayuda</span>
+                <span>Términos de Servicio</span>
+                <span>Privacidad</span>
+            </div>
+
+            <div class="system-status">
+                <span></span>
+                Sistema operativo
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="/frontend/script.js" defer>
+    console.log("AGROVISION: script.js se está ejecutando");
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#032c24">
+    <title>Iniciar sesión | AgroVision AI</title>
+    <link rel="stylesheet" href="/frontend/style.css?v=2">
+</head>
+<body class="auth-page">
+
+    <main class="auth-layout">
+
+        <section class="auth-brand">
+            <div class="brand-content">
+                <a class="brand-logo" href="/login">
+                    <span class="brand-icon">🌿</span>
+                    <span>AgroVision <strong>AI</strong></span>
+                </a>
+
+                <p class="brand-tagline">
+                    Cultivos más sanos, un mejor futuro.
+                </p>
+
+                <div class="brand-description">
+                    <h2>La tecnología también cultiva.</h2>
+                    <p>
+                        Analiza tus cultivos con inteligencia artificial
+                        y descubre información que te ayude a cuidarlos.
+                    </p>
+                </div>
+
+                <div class="brand-features">
+                    <div class="feature">
+                        <span class="feature-icon">🌱</span>
+                        <div>
+                            <strong>Detecta enfermedades y plagas</strong>
+                            <p>Identifica posibles problemas en tus cultivos.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">🔬</span>
+                        <div>
+                            <strong>Obtén diagnósticos</strong>
+                            <p>Consulta los resultados del análisis de IA.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">📈</span>
+                        <div>
+                            <strong>Mejora tus cultivos</strong>
+                            <p>Utiliza la información para tomar decisiones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="brand-footer">
+                Innovación para el campo, un cultivo a la vez.
+            </p>
+        </section>
+
+        <section class="auth-form-section">
+            <div class="auth-card">
+
+                <a class="mobile-brand" href="/login">
+                    🌿 AgroVision <strong>AI</strong>
+                </a>
+
+                <div class="auth-heading">
+                    <span class="auth-eyebrow">BIENVENIDO DE NUEVO</span>
+                    <h1>Iniciar sesión</h1>
+                    <p>Ingresa a tu cuenta para continuar.</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input
+                            id="correo"
+                            name="correo"
+                            type="email"
+                            placeholder="tu@correo.com"
+                            maxlength="70"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña</label>
+
+                        <div class="password-field">
+                            <input
+                                id="contrasena"
+                                name="contrasena"
+                                type="password"
+                                placeholder="Ingresa tu contraseña"
+                                maxlength="128"
+                                autocomplete="current-password"
+                                required
+                            >
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Mostrar contraseña"
+                            >Mostrar</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="loginButton" class="auth-submit">
+                        Iniciar sesión <span aria-hidden="true">→</span>
+                    </button>
+
+                    <p id="mensaje" class="auth-message" role="status"
+                       aria-live="polite"></p>
+                </form>
+
+                <div class="auth-divider">
+                    <span>¿Todavía no tienes cuenta?</span>
+                </div>
+
+                <a href="/registro" class="auth-secondary">
+                    Crear una cuenta <span aria-hidden="true">↗</span>
+                </a>
+
+                <div class="auth-security">
+                    <span aria-hidden="true">🔒</span>
+                    Protegemos el acceso a tu cuenta.
+                </div>
+            </div>
+
+            <p class="copyright">
+                © 2026 AgroVision AI · Agricultura inteligente
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        const formulario = document.getElementById("loginForm");
+        const mensaje = document.getElementById("mensaje");
+        const boton = document.getElementById("loginButton");
+        const campoContrasena = document.getElementById("contrasena");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+            const mostrar = campoContrasena.type === "password";
+            campoContrasena.type = mostrar ? "text" : "password";
+            togglePassword.textContent = mostrar ? "Ocultar" : "Mostrar";
+            togglePassword.setAttribute(
+                "aria-label",
+                mostrar ? "Ocultar contraseña" : "Mostrar contraseña"
+            );
+        });
+
+        formulario.addEventListener("submit", async (evento) => {
+            evento.preventDefault();
+
+            mensaje.textContent = "Verificando tus datos...";
+            mensaje.className = "auth-message";
+            boton.disabled = true;
+            boton.textContent = "Ingresando...";
+
+            const datos = {
+                correo: document.getElementById("correo").value.trim(),
+                contrasena: campoContrasena.value
+            };
+
+            try {
+                const respuesta = await fetch("/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                const resultado = await respuesta.json();
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        resultado.detail || "No se pudo iniciar sesión."
+                    );
+                }
+
+                if (!resultado.access_token || !resultado.usuario) {
+                    throw new Error(
+                        "La respuesta del servidor no contiene la sesión esperada."
+                    );
+                }
+
+                sessionStorage.setItem(
+                    "agrovision_token",
+                    resultado.access_token
+                );
+
+                sessionStorage.setItem(
+                    "agrovision_usuario",
+                    JSON.stringify(resultado.usuario)
+                );
+
+                window.location.href = "/panel";
+
+            } catch (error) {
+                mensaje.textContent =
+                    error.message || "No fue posible conectar con el servidor.";
+                mensaje.className = "auth-message auth-message-error";
+                boton.disabled = false;
+                boton.innerHTML = 'Iniciar sesión <span aria-hidden="true">→</span>';
+            }
+        });
+    </script>
+</body>
+</html>

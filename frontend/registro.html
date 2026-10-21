@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#031f1a">
+    <title>Crear cuenta | AgroVision AI</title>
+    <link rel="stylesheet" href="/frontend/style.css?v=2">
+</head>
+
+<body class="auth-page">
+<main class="auth-layout">
+
+    <section class="auth-brand">
+        <div class="brand-content">
+            <a class="brand-logo" href="/login">
+                <span class="brand-icon">🌿</span>
+                <span>AgroVision <strong>AI</strong></span>
+            </a>
+
+            <p class="brand-tagline">Cultivos más sanos, un mejor futuro.</p>
+
+            <div class="brand-description">
+                <h2>Tu futuro también se cultiva.</h2>
+                <p>
+                    Crea tu cuenta y utiliza la inteligencia artificial
+                    para conocer mejor el estado de tus cultivos.
+                </p>
+            </div>
+
+            <div class="brand-features">
+                <div class="feature">
+                    <span class="feature-icon">🌱</span>
+                    <div>
+                        <strong>Cuida tus cultivos</strong>
+                        <p>Identifica posibles enfermedades y plagas.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <span class="feature-icon">🔬</span>
+                    <div>
+                        <strong>Analiza con inteligencia artificial</strong>
+                        <p>Obtén información sobre tus plantas.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <span class="feature-icon">📈</span>
+                    <div>
+                        <strong>Crece con tecnología</strong>
+                        <p>Toma decisiones con información útil.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="brand-footer">
+            Innovación para el campo, un cultivo a la vez.
+        </p>
+    </section>
+
+    <section class="auth-form-section">
+        <div class="auth-card">
+
+            <a class="mobile-brand" href="/login">
+                🌿 AgroVision <strong>AI</strong>
+            </a>
+
+            <div class="auth-heading">
+                <span class="auth-eyebrow">ÚNETE A AGROVISION</span>
+                <h1>Crear cuenta</h1>
+                <p>Regístrate para comenzar a analizar tus cultivos.</p>
+            </div>
+
+            <form id="registroForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input
+                        id="nombre"
+                        name="nombre"
+                        type="text"
+                        placeholder="Tu nombre completo"
+                        maxlength="50"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input
+                        id="correo"
+                        name="correo"
+                        type="email"
+                        placeholder="tu@correo.com"
+                        maxlength="70"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <div class="password-field">
+                        <input
+                            id="contrasena"
+                            name="contrasena"
+                            type="password"
+                            placeholder="Mínimo 8 caracteres"
+                            minlength="8"
+                            maxlength="128"
+                            autocomplete="new-password"
+                            required
+                        >
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                        >Mostrar</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmar">Confirmar contraseña</label>
+                    <div class="password-field">
+                        <input
+                            id="confirmar"
+                            name="confirmar"
+                            type="password"
+                            placeholder="Escribe tu contraseña otra vez"
+                            minlength="8"
+                            maxlength="128"
+                            autocomplete="new-password"
+                            required
+                        >
+                        <button
+                            type="button"
+                            id="toggleConfirmar"
+                            class="password-toggle"
+                        >Mostrar</button>
+                    </div>
+                </div>
+
+                <button type="submit" id="registroButton" class="auth-submit">
+                    Crear mi cuenta <span aria-hidden="true">→</span>
+                </button>
+
+                <p id="mensaje" class="auth-message"
+                   role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="auth-divider">
+                <span>¿Ya tienes una cuenta?</span>
+            </div>
+
+            <a href="/login" class="auth-secondary">
+                Iniciar sesión <span aria-hidden="true">↗</span>
+            </a>
+
+            <div class="auth-security">
+                <span aria-hidden="true">🔒</span>
+                Tus datos se utilizan para gestionar tu cuenta.
+            </div>
+        </div>
+
+        <p class="copyright">
+            © 2026 AgroVision AI · Agricultura inteligente
+        </p>
+    </section>
+
+</main>
+
+<script>
+    const formulario = document.getElementById("registroForm");
+    const mensaje = document.getElementById("mensaje");
+    const boton = document.getElementById("registroButton");
+    const contrasena = document.getElementById("contrasena");
+    const confirmar = document.getElementById("confirmar");
+
+    function configurarVisibilidad(idBoton, idCampo) {
+        const botonMostrar = document.getElementById(idBoton);
+        const campo = document.getElementById(idCampo);
+
+        botonMostrar.addEventListener("click", () => {
+            const mostrar = campo.type === "password";
+            campo.type = mostrar ? "text" : "password";
+            botonMostrar.textContent = mostrar ? "Ocultar" : "Mostrar";
+        });
+    }
+
+    configurarVisibilidad("togglePassword", "contrasena");
+    configurarVisibilidad("toggleConfirmar", "confirmar");
+
+    formulario.addEventListener("submit", async (evento) => {
+        evento.preventDefault();
+
+        mensaje.textContent = "";
+        mensaje.className = "auth-message";
+
+        if (contrasena.value !== confirmar.value) {
+            mensaje.textContent = "Las contraseñas no coinciden.";
+            mensaje.classList.add("auth-message-error");
+            confirmar.focus();
+            return;
+        }
+
+        boton.disabled = true;
+        boton.textContent = "Creando cuenta...";
+
+        const datos = {
+            nombre: document.getElementById("nombre").value.trim(),
+            correo: document.getElementById("correo").value.trim(),
+            contrasena: contrasena.value
+        };
+
+        try {
+            const respuesta = await fetch("/auth/registro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(
+                    resultado.detail || "No se pudo crear la cuenta."
+                );
+            }
+
+            
+if (!resultado.access_token || !resultado.usuario) {
+    throw new Error(
+        "El servidor no devolvió el token de sesión."
+    );
+}
+
+sessionStorage.setItem(
+    "agrovision_token",
+    resultado.access_token
+);
+
+sessionStorage.setItem(
+    "agrovision_usuario",
+    JSON.stringify(resultado.usuario)
+);
+
+mensaje.textContent = "¡Cuenta creada! Entrando al panel...";
+mensaje.classList.remove("auth-message-error");
+alert("Registro exitoso. Voy a abrir el panel.");
+window.location.href = "/panel";
+
+
+        } catch (error) {
+            mensaje.textContent =
+                error.message || "No fue posible conectar con el servidor.";
+            mensaje.classList.add("auth-message-error");
+            boton.disabled = false;
+            boton.innerHTML = 'Crear mi cuenta <span aria-hidden="true">→</span>';
+        }
+    });
+</script>
+</body>
+</html>

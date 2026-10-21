@@ -1,0 +1,14 @@
+.env
+
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+Agro_backup.sql
+*.sql
+uploads/
+*.log
+.DS_Store

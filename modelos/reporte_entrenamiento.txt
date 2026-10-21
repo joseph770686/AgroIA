@@ -1,0 +1,33 @@
+AGROVISION AI - REPORTE DE ENTRENAMIENTO
+============================================================
+
+Clases: 7
+Épocas: 15
+Tamaño de imagen: 224x224
+Batch size: 32
+Learning rate: 0.001
+
+Clases:
+0: arroz_enfermo
+1: arroz_sano
+2: frijol_enfermo
+3: frijol_sano
+4: maiz_enfermo
+5: maiz_plaga
+6: maiz_sano
+
+Reporte de clasificación:
+
+                precision    recall  f1-score   support
+
+ arroz_enfermo       0.92      0.94      0.93      1334
+    arroz_sano       0.93      0.91      0.92      1154
+frijol_enfermo       1.00      0.97      0.99       660
+   frijol_sano       0.95      1.00      0.97       330
+  maiz_enfermo       0.72      0.93      0.81       188
+    maiz_plaga       0.97      0.88      0.92       638
+     maiz_sano       0.91      0.99      0.95        91
+
+      accuracy                           0.93      4395
+     macro avg       0.91      0.94      0.93      4395
+  weighted avg       0.93      0.93      0.93      4395

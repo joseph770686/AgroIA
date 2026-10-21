@@ -1,0 +1,15 @@
+pip install fastapi
+pip install "uvicorn[standard]"
+pip install python-multipart
+pip install python-dotenv
+pip install torch torchvision
+pip install numpy
+pip install Pillow
+pip install scikit-learn
+pip install scipy
+pip install mysql-connector-python
+pip install SQLAlchemy
+pip install pydantic
+pip install "pwdlib[argon2]"
+pip install "python-jose[cryptography]"
+pip install email-validator
